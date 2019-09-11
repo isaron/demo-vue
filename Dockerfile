@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:lts
 ENV PORT 8080
 EXPOSE 8080
 
