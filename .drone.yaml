@@ -3,14 +3,14 @@ workspace:
   path: .
 pipeline:
   init:
-    image: 'node:latest'
+    image: 'node:lts'
     commands:
       - 'yarn install --network-concurrency 1'
     when:
       event: [push, tag, deployment]
       branch: [master, dev, testing, staging]
   build:
-    image: 'node:latest'
+    image: 'node:lts'
     environment:
       - TZ=Asia/Shanghai
     secrets:
