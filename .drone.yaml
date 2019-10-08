@@ -1,0 +1,29 @@
+workspace:
+  base: /
+  path: .
+pipeline:
+  init:
+    image: 'node:latest'
+    commands:
+      - 'yarn install --network-concurrency 1'
+    when:
+      event: [push, tag, deployment]
+      branch: [master, dev, testing, staging]
+  build:
+    image: 'node:latest'
+    environment:
+      - TZ=Asia/Shanghai
+    secrets:
+      - key1
+      - key3
+    commands:
+      - 'yarn run build'
+    when:
+      event: [push, tag, deployment]
+      branch: [master, dev, testing, staging]
+# services:
+#   database:
+#     image: postgres
+#     environment:
+#       - POSTGRES_USER=postgres
+#       - POSTGRES_DB=test
