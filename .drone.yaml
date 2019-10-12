@@ -3,14 +3,14 @@ workspace:
   path: .
 pipeline:
   init:
-    image: 'node:lts'
+    image: 'nodejs:lts-alpine'
     commands:
       - 'yarn install --network-concurrency 1'
     when:
       event: [push, tag, deployment]
       branch: [master, dev, testing, staging]
   build:
-    image: 'node:lts'
+    image: 'nodejs:lts-alpine'
     environment:
       - TZ=Asia/Shanghai
     secrets:
